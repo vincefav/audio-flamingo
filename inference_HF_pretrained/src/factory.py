@@ -83,7 +83,7 @@ class CLAP(nn.Module):
         enable_fusion = True
         fusion_type = "aff_2d"
         self.nvclap = create_htsat_model(audio_cfg, enable_fusion, fusion_type)
-        clap_state_dict = torch.load(clap_config["checkpoint"], map_location = 'cpu')
+        clap_state_dict = torch.load(clap_config["checkpoint"], map_location = 'cpu', weights_only=False)
         clap_state_dict_copy = clap_state_dict['state_dict'].copy()
         for key in list(clap_state_dict['state_dict'].keys()):
             if 'audio' in key:
